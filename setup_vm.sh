@@ -30,6 +30,7 @@ dnf install -y lz4-devel
 dnf install -y libpcap-devel 
 dnf install -y fuse3-devel
 dnf install -y telemetry
+dnf install -y python
 
 git clone --recurse-submodules https://github.com/CESNET/ipfixprobe
 cd ipfixprobe

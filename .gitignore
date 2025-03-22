@@ -4,3 +4,6 @@ data
 *.csv
 *.json
 *.dat
+
+# TEMP
+detection_example.py

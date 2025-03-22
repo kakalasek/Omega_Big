@@ -38,3 +38,6 @@ autoreconf -i
 ./configure --with-pcap --with-nemea
 make
 make install
+
+pip install pandas
+pip install scikit-learn

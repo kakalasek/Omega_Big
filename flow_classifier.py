@@ -8,12 +8,18 @@ import pickle
 import json
 
 trap = pytrap.TrapCtx()
-trap.init(sys.argv, 1, 0)
+trap.init(sys.argv, 1, 1)
 
-inputspec = "int8* PPI_PKT_DIRECTIONS,uint16* PPI_PKT_LENGTHS"
+inputspec = "ipaddr DST_IP,ipaddr SRC_IP,int8* PPI_PKT_DIRECTIONS,uint16* PPI_PKT_LENGTHS"
 trap.setRequiredFmt(0, pytrap.FMT_UNIREC, inputspec)
 rec = pytrap.UnirecTemplate(inputspec)
-        
+
+outputspec = "ipaddr DST_IP,ipaddr SRC_IP,string CLASS"
+output = pytrap.UnirecTemplate(outputspec)
+trap.setDataFmt(0, pytrap.FMT_UNIREC, outputspec)
+
+output.createMessage()
+
 class_mapping = {}
 
 with open("classes_mapping.json", "r") as file:
@@ -32,11 +38,15 @@ def do_classification(rec):
 
         d = pd.DataFrame(t, columns=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'])
 
-        predictions = loaded_model.predict(d).tolist()
+        prediction = str(loaded_model.predict(d).tolist()[0])
 
-        print(class_mapping[str(predictions[0])])
+        traffic_class = class_mapping[prediction]
 
-        #trap.send(rec.TLS_SNI, 0)
+        output.SRC_IP = rec.SRC_IP
+        output.DST_IP = rec.DST_IP
+        output.CLASS = traffic_class
+
+        trap.send(output.getData(), 0)
 
 while True:
     try:

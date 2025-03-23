@@ -1,9 +1,8 @@
+# Use this for temporary files used for developement
 tmp
+
 data
 .venv
 *.csv
 *.json
 *.dat
-
-# TEMP
-detection_example.py

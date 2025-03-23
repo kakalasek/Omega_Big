@@ -1,7 +1,10 @@
 #!/bin/bash
 
+set -e
+
 if [ -z $1 ]; then
     echo "You have to provide an interface to listen to"
+    exit 2
 fi
 
 cd src

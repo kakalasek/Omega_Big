@@ -1,2 +1,12 @@
-# Omega_Big
-This is school project. It contains script for training a model for network classification. It also contains a script for setting up a vm and a simple module for the NEMEA framework.
+---
+title: Pipuv-Network-Classifier
+author: Josef Vetrovsky
+date: 5. 5. 2025
+school: SPSE Jecna
+---
+
+
+
+
+# How to setup
+

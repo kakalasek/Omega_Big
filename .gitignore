@@ -4,4 +4,3 @@ tmp
 data
 .venv
 *.csv
-*.dat

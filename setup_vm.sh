@@ -39,5 +39,9 @@ autoreconf -i
 make
 make install
 
+dnf install -y ipfixprobe
+
+dnf install -y pip
+
 pip install pandas
 pip install scikit-learn

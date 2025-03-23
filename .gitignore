@@ -1,5 +1,7 @@
 # Use this for temporary files used for developement
 tmp
+test.py
+test.sh
 
 data
 .venv

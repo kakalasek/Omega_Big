@@ -5,8 +5,32 @@ date: 5. 5. 2025
 school: SPSE Jecna
 ---
 
-
 # How to setup
+
+This software is tested only on **Oracle Linux 9.3 and 9.5**.     
+
+## Requirements
+
+**Git**, so you can clone the repo.
+
+## Prepare our VM
+
+Simply run:
+
+```Bash
+sudo ./setup_vm.sh
+```
+
+This script will download all the needed packages and download and install ipfixprobe for you
+
+## Run with simple logger
+
+One of the provided scripts will start the application, which will simply log the every classified packet to the screen      
+After setting up our vm, we can run:
+
+```Bash
+./start_application_logger.sh
+```
 
 # 3d-party libraries
 

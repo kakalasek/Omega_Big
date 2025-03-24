@@ -30,11 +30,12 @@ This script will download all the needed packages and download and install ipfix
 
 ## Run with simple logger
 
-One of the provided scripts will start the application, which will simply log the every classified packet to the screen      
+One of the provided scripts will start the application, which will simply log the every classified packet to the screen   
+We also need to specify the network interface we want to monitor on
 After setting up our vm, we can run:
 
 ```Bash
-./start_application_logger.sh
+./start_application_logger.sh <network_interface_name>
 ```
 
 # Application diagram

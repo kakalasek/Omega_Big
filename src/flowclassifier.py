@@ -28,7 +28,6 @@ with open("classes/classes_mapping.json", "r") as file:
 loaded_model = pickle.load(open('models/network_classificator_cesnet_ghbt.dat', 'rb'))
 
 def do_classification(rec):
-    # Write algorhitm here
 
     if len(rec.PPI_PKT_LENGTHS) > 0:
 

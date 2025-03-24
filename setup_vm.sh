@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 dnf install -y dnf-plugins-core
 
 dnf copr -y enable @CESNET/NEMEA-stable

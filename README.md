@@ -20,8 +20,34 @@ The second dataset is **a very large file of network flows from CESNET**. This d
 
 1. **Extract our desired columns**      
     There is a lot of column in the datasets, which were not needed. Only packet sizes and directions of the first 30 packets in each flow and TLS_SNI field were extracted. The TLS_SNI field contains a value used for annotation.
-2. **Multiply packet directions and sizes**                 
-    In order to reflect the packet direction
+2. **Remove duplicates and flow without any packets**           
+    Duplicates are removed using basic Pandas functions and every flow with first packet size set to 0 (or first packet direction set ot None, it is the same) is dropped
+3. **Multiply packet directions and sizes**                 
+    In order to reflect the packet direction in the dataset, we need to multiply the values from the packet directions list with the packet sizes.
+4. **Append TLS_SNI to the multiplied values**
+5. **Create the classes**           
+    Define the classes. This is done by creating a simple dictionary, where keys are the string we will search for in the TLS_SNI field and values are the service names. A new column names *class* is defined and every value there is set to the *other* service class. Then a simple algorthim will try to find every key in the dataset and if it sees the key string inside the TLS SNI field, it will replace the *other* class with the value assigned to the the particular key inside the dictionary.         
+6. **Transform classes into numbers**           
+    A simple dictionary mapping is created, which will be used for resolving the predictions of the models. Then, according to this dictionary, the *class* column values are replaced with the numbers
+
+## Model training
+
+Several models are available in this application. There is also an option to choose a model, but by default the best in testing is picked.          
+The models have a naming scheme, which looks like this:
+
+    network_classificator_<cesnet/home>_<algorithm_short>.dat
+
+**Dataset**     
+**cesnet** refers to the CESNET dataset, which was used for training.           
+**home** refers to the dataset aquired from home e. i. from my network data and network data of my relatives and friends
+
+**Model type**      
+Here is a table of shortnames for different models:
+
+| Shortname | Model |
+|-----------|-------|
+| rf        | Random Forest Clasifier |
+| gbt       | Gradient Boosting Forest Class
 
 # How to setup
 

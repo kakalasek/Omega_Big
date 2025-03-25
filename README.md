@@ -47,7 +47,12 @@ Here is a table of shortnames for different models:
 | Shortname | Model |
 |-----------|-------|
 | rf        | Random Forest Clasifier |
-| gbt       | Gradient Boosting Forest Class
+| gbt       | Gradient Boosting Classifier |
+| hgbt      | Hist Gradient Boosting Classifier |
+
+## Data shape
+
+
 
 # How to setup
 

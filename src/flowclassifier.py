@@ -25,7 +25,7 @@ class_mapping = {}
 with open("classes/classes_mapping.json", "r") as file:
     class_mapping =  json.load(file)
 
-loaded_model = pickle.load(open('models/network_classificator_cesnet_ghbt.dat', 'rb'))
+loaded_model = pickle.load(open('models/network_classifier_cesnet_ghbt.dat', 'rb'))
 
 def do_classification(rec):
 

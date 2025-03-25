@@ -10,11 +10,11 @@ import json
 trap = pytrap.TrapCtx()
 trap.init(sys.argv, 1, 1)
 
-inputspec = "ipaddr DST_IP,ipaddr SRC_IP,int8* PPI_PKT_DIRECTIONS,uint16* PPI_PKT_LENGTHS"
+inputspec = "time TIME_FIRST,ipaddr DST_IP,ipaddr SRC_IP,int8* PPI_PKT_DIRECTIONS,uint16* PPI_PKT_LENGTHS"
 trap.setRequiredFmt(0, pytrap.FMT_UNIREC, inputspec)
 rec = pytrap.UnirecTemplate(inputspec)
 
-outputspec = "ipaddr DST_IP,ipaddr SRC_IP,string CLASS"
+outputspec = "time TIME_FIRST,ipaddr DST_IP,ipaddr SRC_IP,string CLASS"
 output = pytrap.UnirecTemplate(outputspec)
 trap.setDataFmt(0, pytrap.FMT_UNIREC, outputspec)
 

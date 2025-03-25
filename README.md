@@ -22,7 +22,8 @@ The second dataset is **a very large file of network flows from CESNET**. This d
     There is a lot of column in the datasets, which were not needed. Only packet sizes and directions of the first 30 packets in each flow and TLS_SNI field were extracted. The TLS_SNI field contains a value used for annotation.
 2. **Remove duplicates and flow without any packets**           
     Duplicates are removed using basic Pandas functions and every flow with first packet size set to 0 (or first packet direction set ot None, it is the same) is dropped
-3. **Select only packte
+3. **Select only packets with DST_PORT with the value 443**
+    We are interested mainly in web services, which are accessible on port 443. So to filter out unneccesary DNS and stuff, we have to only pick the data on this port.
 4. **Multiply packet directions and sizes**           
     In order to reflect the packet direction in the dataset, we need to multiply the values from the packet directions list with the packet sizes.
 5. **Append TLS_SNI to the multiplied values**

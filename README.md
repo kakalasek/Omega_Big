@@ -69,6 +69,14 @@ The class here is represented by a string, but before training it needs to be co
 |517|-30|-30| ... |0   | gmail |
 |20 |20 |-90| ... |-200| github|
 
+# Models
+
+I will list all available models here, their score and the way the score was calculated.
+
+| name | score | method |
+|------|-------|--------|
+| network_classifier_cesnet_ghbt.dat | - | score() method from Scikit-learn |
+
 # How to setup
 
 This software is tested only on **Oracle Linux 9.3 and 9.5**.     
@@ -125,5 +133,5 @@ Cesnet Ipfixprobe documentation on Github - https://github.com/CESNET/Nemea
 Cesnet Ipfixprobe documentation on Github Pages - https://cesnet.github.io/ipfixprobe/          
 Cesnet Nemea-pytrap documentation - https://nemea.liberouter.org/doc/pytrap/index.html          
 All other modules used are also a part of the NEMEA project       
-
-# Resume
+Training script for decision tree algorithms from Mgr. Mykyta Narusevych - *I decided not to publish this script here*         
+Scripts from Python for Data Science course from Netacad FEL - *I cant publish those scripts here*

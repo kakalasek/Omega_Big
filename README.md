@@ -71,11 +71,11 @@ The class here is represented by a string, but before training it needs to be co
 
 # Models
 
-I will list all available models here, their score and the way the score was calculated.
+I will list all available models here, their score and the way the score was calculated. The chosen hyperparameters are also listed.
 
-| name | score | method |
+| name | score | method | hyperparamameters |
 |------|-------|--------|
-| network_classifier_cesnet_ghbt.dat | - | score() method from Scikit-learn |
+| network_classifier_cesnet_ghbt.dat | - | score() method from Scikit-learn | - |
 
 # How to setup
 

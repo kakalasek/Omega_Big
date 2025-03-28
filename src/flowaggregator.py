@@ -3,10 +3,19 @@
 import pytrap
 import sys
 import json
+import yaml
 import os
 from ipaddress import ip_address
 
 def aggregate(rec, agg_dict: dict, write: int, agg_file: str):
+    """This function aggregates the flow data into one dictionary file
+
+    Args:
+        rec (UnirecTemplate): Contains all the data needed for aggregation
+        agg_dict (dict): The dictionary which is used for aggregation
+        write (int): If the dictionary should be written to file
+        agg_file (str): The path of the aggregation file
+    """
 
     ipaddr = str(rec.SRC_IP) if ip_address(str(rec.SRC_IP)).is_private else str(rec.DST_IP)
     service = str(rec.CLASS)
@@ -25,7 +34,18 @@ def aggregate(rec, agg_dict: dict, write: int, agg_file: str):
             json.dump(agg_dict, file)
         
 
-outputfile = "./agg.json"
+with open("config.yaml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile)
+
+if not isinstance(cfg["write"], int):
+    raise SystemExit("You must specify 'write' as a positive integer")
+try:
+    with open(cfg["filepath"], "w") as file:
+        file.write("")
+except:
+    raise SystemExit("The specified file is not valid")
+
+outputfile = cfg["filepath"]
 
 trap = pytrap.TrapCtx()
 trap.init(sys.argv, 1, 0)
@@ -35,7 +55,7 @@ trap.setRequiredFmt(0, pytrap.FMT_UNIREC, inputspec)
 rec = pytrap.UnirecTemplate(inputspec)
 
 json_agg = {}
-write = 20
+write = cfg["write"]
 
 # Main loop
 
@@ -58,9 +78,8 @@ while True:
     aggregate(rec, json_agg, write <= 0, outputfile)
 
     if write <= 0:
-        write = 20
-
-    print(write)
+        print("Data written")
+        write = cfg["write"]
 
 trap.finalize()
 

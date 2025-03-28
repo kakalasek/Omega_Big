@@ -28,16 +28,21 @@ with open("classes/classes_mapping.json", "r") as file:
 loaded_model = pickle.load(open('models/network_classifier_cesnet_ghbt.dat', 'rb'))
 
 def do_classification(rec):
+    """Classifies the flow and sends data to trap output
 
+    Args:
+        rec (UnirecTemplate): Contains all the data needed to perform the classification
+    """
+    
     if len(rec.PPI_PKT_LENGTHS) > 0:
 
-        t = np.array(rec.PPI_PKT_DIRECTIONS) * np.array(rec.PPI_PKT_LENGTHS)
-        t = np.resize(t, 30)
-        t = t.reshape(1, -1)
+        packets_length_times_direction = np.array(rec.PPI_PKT_DIRECTIONS) * np.array(rec.PPI_PKT_LENGTHS)
+        packets_length_times_direction = np.resize(packets_length_times_direction, 30)
+        packets_length_times_direction = packets_length_times_direction.reshape(1, -1)
 
-        d = pd.DataFrame(t, columns=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'])
+        features = pd.DataFrame(packets_length_times_direction, columns=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'])
 
-        prediction = str(loaded_model.predict(d).tolist()[0])
+        prediction = str(loaded_model.predict(features).tolist()[0])
 
         traffic_class = class_mapping[prediction]
 

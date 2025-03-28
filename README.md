@@ -109,6 +109,27 @@ After setting up our vm, we can run:
 Since starting Ipfixprobe needs sudo privileges, you will be asked to enter your password. Then you will probably need to wait a while until the system starts to log something, since Ipfixprobe first needs to catch some packets in order to return some flows.              
 After some time the system should start to log in this format: *TIMESTAMP,DST_IP,SRC_IP,CLASS*
 
+## Run with network aggregator
+
+### Configuration
+
+There is a file called config.yaml.         
+You can configure **write** there. That is how often will the aggregator write to the file. More specifically, after it recieves how many packet flows.             
+There is also **filepath**, which is the path to a file you want to save the outputs to.
+
+### Start
+
+Then just do:
+
+```Bash
+./start_flowaggregator.sh <network_interface_name>
+```
+
+### Exceptions and errors
+
+You can enter invalid data into the config file. The script will simply tell you and force you to rewrite them
+
+
 # Application diagram
 
 Since NEMEA framework is based on microservices, also this project uses such a concept. Several NEMEA modules are connected together with unix sockets. At the end we have a special kind of module, which either does something with the classification or simply logs the data using the logger module.

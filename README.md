@@ -113,7 +113,7 @@ After some time the system should start to log in this format: *TIMESTAMP,DST_IP
 
 ### Configuration
 
-There is a file called config.yaml.         
+There is a file called config.yaml under the src directory.         
 You can configure **write** there. That is how often will the aggregator write to the file. More specifically, after it recieves how many packet flows.             
 There is also **filepath**, which is the path to a file you want to save the outputs to.
 
@@ -122,7 +122,7 @@ There is also **filepath**, which is the path to a file you want to save the out
 Then just do:
 
 ```Bash
-./start_flowaggregator.sh <network_interface_name>
+./start_flowaggregator.sh
 ```
 
 ### Exceptions and errors
